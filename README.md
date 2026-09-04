@@ -14,7 +14,6 @@ Sommaire
     8_Déploiement en production 
     9_Base de données
     10_Limites connues
-    11_Auteur
 
 
 1. Présentation
@@ -28,7 +27,7 @@ Sommaire
 L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
     a) Visiteur (non connecté) : 
-- Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
+    - Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
     - Consultation d'une fiche bien complète (photos, équipements, localisation, avis)
     - Consultation du profil public d'un propriétaire (annonces, note moyenne, temps de réponse moyen)
     - Inscription / connexion
@@ -195,9 +194,8 @@ Palette inspirée d'une identité visuelle chaleureuse et locale plutôt que des
 - **Mode sombre** intégré (bascule via `localStorage`, sans flash au chargement)
 - Composants signature : rail de catégories défilant en page d'accueil, squelettes de chargement animés pendant les recherches AJAX, lightbox photo maison, indicateur de menu actif qui "glisse" sous le lien
 
----
 
-## 💻 Installation en local (Laragon)
+ 7. Installation en local (Laragon)
 
 1. Cloner/copier le projet dans le dossier `www` de Laragon.
 2. Créer la base de données dans HeidiSQL (ou phpMyAdmin), puis exécuter **dans l'ordre** tous les fichiers `jourX-schema.sql` / `jourX-migration.sql`.
@@ -206,9 +204,8 @@ Palette inspirée d'une identité visuelle chaleureuse et locale plutôt que des
 5. Démarrer Apache/MySQL depuis Laragon, accéder au site via `http://immo-app.test/` (ou l'URL configurée).
 6. Vérifier les droits d'écriture sur `uploads/biens/`, `uploads/avatars/` et `logs/`.
 
----
 
-## 🚀 Déploiement en production
+8. Déploiement en production
 
 Hébergement actuel : **InfinityFree** (mutualisé gratuit).
 
@@ -217,9 +214,8 @@ Hébergement actuel : **InfinityFree** (mutualisé gratuit).
 - Limite connue : `mail()` sur un hébergement mutualisé gratuit part fréquemment en spam ou est bloqué par les gros fournisseurs (Gmail, Outlook). Pour un vrai lancement, migrer vers un service transactionnel dédié (Brevo, Mailjet...) est recommandé.
 - Aucune tâche planifiée (`cron`) disponible sur ce plan → la sauvegarde de base de données se fait manuellement via le bouton export SQL de l'espace admin.
 
----
 
-## 🗄 Base de données
+9. Base de données
 
 Tables principales (MySQL/InnoDB, clés étrangères actives) :
 
@@ -241,9 +237,8 @@ Tables principales (MySQL/InnoDB, clés étrangères actives) :
 
 > 💡 Le détail complet des colonnes se trouve dans les fichiers `jourX-schema.sql` / `jourX-migration.sql`, qui font office d'historique de migration daté.
 
----
 
-## 🔭 Limites connues / pistes d'amélioration
+10. Limites connues / pistes d'amélioration
 
 - Pas de notifications par **email** pour les événements in-app (message reçu, visite acceptée...) — uniquement la cloche de notification, donc silence total pour un utilisateur déconnecté.
 - Pas de filtre de recherche sur le **nombre de chambres** ni la **superficie**, bien que ces données existent en base.
@@ -251,13 +246,3 @@ Tables principales (MySQL/InnoDB, clés étrangères actives) :
 - Aucun **tableau de bord dédié** pour le rôle locataire (contrairement au propriétaire).
 - Pas de gestion de **paiement en ligne** ni de **contrat/bail** téléchargeable.
 - Pas de **pièces jointes** dans la messagerie (texte seul).
-
----
-
-## ✍️ Auteur
-
-Projet développé et maintenu de façon incrémentale ("jour par jour"), avec une attention particulière portée à la sécurité (voir la section dédiée) et à l'expérience utilisateur sur mobile.
-
----
-
-*Ce README est un document vivant — à mettre à jour à chaque fonctionnalité majeure ajoutée ou retirée.*
