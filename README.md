@@ -4,17 +4,17 @@ Plateforme immobilière camerounaise permettant à des propriétaires de publier
 
  Sommaire
 
-Présentation
-Rôles et fonctionnalités 
-Stack technique
-Architecture du projet
-Sécurité
-Design system
-Installation en local (Laragon)
-Déploiement en production 
-Base de données
-Limites connues
-Auteur
+   _Présentation
+   _Rôles et fonctionnalités 
+   _Stack technique
+   _Architecture du projet
+   _Sécurité
+   _Design system
+   _Installation en local (Laragon)
+   _Déploiement en production 
+   _Base de données
+   _Limites connues
+   _Auteur
 
 
 1. Présentation
