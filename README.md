@@ -34,7 +34,7 @@ L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
     b) Locataire :
         Tout ce qui précède, plus :
-        - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
+    - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
     - Réservation d'une visite sur un créneau disponible
     - Annulation d'une demande de visite en attente ou déjà acceptée
     - Ajout de biens en favoris
