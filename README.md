@@ -33,7 +33,7 @@ L'application distingue 3 rôles : locataire, proprietaire et administrateur.
     - Inscription / connexion
 
     b) Locataire :
-        Tout ce qui précède, plus :
+    Tout ce qui précède, plus :
     - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
     - Réservation d'une visite sur un créneau disponible
     - Annulation d'une demande de visite en attente ou déjà acceptée
@@ -44,24 +44,24 @@ L'application distingue 3 rôles : locataire, proprietaire et administrateur.
     - Suppression définitive de son compte (voir [Sécurité](#-sécurité))
 
     c) Propriétaire :
-      c Tout ce qui précède (sauf réserver une visite sur son propre bien), plus :
-        - Assistant de publication en 5 étapes (infos - équipements - localisation - photos - récapitulatif), avec sauvegarde de session à chaque étape pour ne rien perdre en cas d'abandon
-        - Upload de photos par glisser-déposer, réordonnancement, compression automatique
-        - Gestion des photos après publication (ajout/suppression sans repasser par l'assistant complet)
-        - Modification d'une annonce déjà publiée (repasse automatiquement en modération, voir Sécurité)
-        - Gestion des disponibilités (calendrier de créneaux bloqués, avec détection de chevauchement)
-        - Acceptation/refus des demandes de visite (l'acceptation bloque automatiquement le créneau et refuse les autres demandes concurrentes sur la même date)
-        - Réponse publique aux avis laissés sur ses biens
-        - Tableau de bord avec statistiques (vues, biens actifs, taux d'approbation...)
-        - Badge "temps de réponse moyen" affiché automatiquement sur son profil public dès qu'il a un historique de conversation suffisant
+    Tout ce qui précède (sauf réserver une visite sur son propre bien), plus :
+    - Assistant de publication en 5 étapes (infos - équipements - localisation - photos - récapitulatif), avec sauvegarde de session à chaque étape pour ne rien perdre en cas d'abandon
+    - Upload de photos par glisser-déposer, réordonnancement, compression automatique
+    - Gestion des photos après publication (ajout/suppression sans repasser par l'assistant complet)
+    - Modification d'une annonce déjà publiée (repasse automatiquement en modération, voir Sécurité)
+    - Gestion des disponibilités (calendrier de créneaux bloqués, avec détection de chevauchement)
+    - Acceptation/refus des demandes de visite (l'acceptation bloque automatiquement le créneau et refuse les autres demandes concurrentes sur la même date)
+    - Réponse publique aux avis laissés sur ses biens
+    - Tableau de bord avec statistiques (vues, biens actifs, taux d'approbation...)
+    - Badge "temps de réponse moyen" affiché automatiquement sur son profil public dès qu'il a un historique de conversation suffisant
 
     d) Administrateur : 
-        - Modération des annonces (approuver / rejeter, avec notification automatique au propriétaire et déclenchement des alertes de recherche correspondantes)
-        - Gestion des signalements (traiter / rejeter)
-        - Gestion des comptes utilisateurs (suspendre / réactiver)
-        - Journal des accès refusés : trace chaque tentative d'accès à une page admin par un compte non autorisé (IP, route visée, utilisateur si connu)
-        - Export SQL complet de la base en un clic (sauvegarde manuelle, utile sur un hébergement mutualisé sans accès `cron`/shell)
-        - Nettoyage des fichiers photo orphelins (uploads interrompus, non rattachés à une annonce)
+    - Modération des annonces (approuver / rejeter, avec notification automatique au propriétaire et déclenchement des alertes de recherche correspondantes)
+    - Gestion des signalements (traiter / rejeter)
+    - Gestion des comptes utilisateurs (suspendre / réactiver)
+    - Journal des accès refusés : trace chaque tentative d'accès à une page admin par un compte non autorisé (IP, route visée, utilisateur si connu)
+    - Export SQL complet de la base en un clic (sauvegarde manuelle, utile sur un hébergement mutualisé sans accès `cron`/shell)
+    - Nettoyage des fichiers photo orphelins (uploads interrompus, non rattachés à une annonce)
 
 3. Stack technique
 
