@@ -4,38 +4,38 @@ Plateforme immobilière camerounaise permettant à des propriétaires de publier
 
 Sommaire
 
-   1_Présentation
-   2_Rôles et fonctionnalités 
-   3_Stack technique
-   4_Architecture du projet
-   5_Sécurité
-   6_Design system
-   7_Installation en local (Laragon)
-   8_Déploiement en production 
-   9_Base de données
-   10_Limites connues
-   11_Auteur
+    1_Présentation
+    2_Rôles et fonctionnalités 
+    3_Stack technique
+    4_Architecture du projet
+    5_Sécurité
+    6_Design system
+    7_Installation en local (Laragon)
+    8_Déploiement en production 
+    9_Base de données
+    10_Limites connues
+    11_Auteur
 
 
 1. Présentation
 
-    TTM (Trouve Ton Milieu) est une application web PHP "maison" (sans framework externe type Laravel/Symfony) construite pour répondre à un besoin concret : permettre à n'importe qui au Cameroun de publier ou trouver un logement (chambre, studio, appartement, maison) à louer ou à vendre, avec un système de confiance intégré (modération des annonces, avis, signalements) et une expérience mobile-first.
-    Le projet a été développé de façon incrémentale, "jour par jour", chaque fonctionnalité s'appuyant sur les précédentes sans jamais casser l'existant.
+       TTM (Trouve Ton Milieu) est une application web PHP "maison" (sans framework externe type Laravel/Symfony) construite pour répondre à un besoin concret : permettre à n'importe qui au Cameroun de publier ou trouver un logement (chambre, studio, appartement, maison) à louer ou à vendre, avec un système de confiance intégré (modération des annonces, avis, signalements) et une expérience mobile-first.
+       Le projet a été développé de façon incrémentale, "jour par jour", chaque fonctionnalité s'appuyant sur les précédentes sans jamais casser l'existant.
 
 
 2. Rôles et fonctionnalités
 
-    L'application distingue 3 rôles : locataire, proprietaire et administrateur.
+L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
-a) Visiteur (non connecté) : 
-    - Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
+    a) Visiteur (non connecté) : 
+         - Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
     - Consultation d'une fiche bien complète (photos, équipements, localisation, avis)
     - Consultation du profil public d'un propriétaire (annonces, note moyenne, temps de réponse moyen)
     - Inscription / connexion
 
-b) Locataire :
-    Tout ce qui précède, plus :
-    - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
+    b) Locataire :
+        Tout ce qui précède, plus :
+        - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
     - Réservation d'une visite sur un créneau disponible
     - Annulation d'une demande de visite en attente ou déjà acceptée
     - Ajout de biens en favoris
@@ -44,35 +44,35 @@ b) Locataire :
     - Signalement d'une annonce suspecte (motif + description)
     - Suppression définitive de son compte (voir [Sécurité](#-sécurité))
 
-c) Propriétaire :
-    Tout ce qui précède (sauf réserver une visite sur son propre bien), plus :
-    - Assistant de publication en 5 étapes (infos - équipements - localisation - photos - récapitulatif), avec sauvegarde de session à chaque étape pour ne rien perdre en cas d'abandon
-    - Upload de photos par glisser-déposer, réordonnancement, compression automatique
-    - Gestion des photos après publication (ajout/suppression sans repasser par l'assistant complet)
-    - Modification d'une annonce déjà publiée (repasse automatiquement en modération, voir Sécurité)
-    - Gestion des disponibilités (calendrier de créneaux bloqués, avec détection de chevauchement)
-    - Acceptation/refus des demandes de visite (l'acceptation bloque automatiquement le créneau et refuse les autres demandes concurrentes sur la même date)
-    - Réponse publique aux avis laissés sur ses biens
-    - Tableau de bord avec statistiques (vues, biens actifs, taux d'approbation...)
-    - Badge "temps de réponse moyen" affiché automatiquement sur son profil public dès qu'il a un historique de conversation suffisant
+    c) Propriétaire :
+      c Tout ce qui précède (sauf réserver une visite sur son propre bien), plus :
+        - Assistant de publication en 5 étapes (infos - équipements - localisation - photos - récapitulatif), avec sauvegarde de session à chaque étape pour ne rien perdre en cas d'abandon
+        - Upload de photos par glisser-déposer, réordonnancement, compression automatique
+        - Gestion des photos après publication (ajout/suppression sans repasser par l'assistant complet)
+        - Modification d'une annonce déjà publiée (repasse automatiquement en modération, voir Sécurité)
+        - Gestion des disponibilités (calendrier de créneaux bloqués, avec détection de chevauchement)
+        - Acceptation/refus des demandes de visite (l'acceptation bloque automatiquement le créneau et refuse les autres demandes concurrentes sur la même date)
+        - Réponse publique aux avis laissés sur ses biens
+        - Tableau de bord avec statistiques (vues, biens actifs, taux d'approbation...)
+        - Badge "temps de réponse moyen" affiché automatiquement sur son profil public dès qu'il a un historique de conversation suffisant
 
-d) Administrateur : 
-    - Modération des annonces (approuver / rejeter, avec notification automatique au propriétaire et déclenchement des alertes de recherche correspondantes)
-    - Gestion des signalements (traiter / rejeter)
-    - Gestion des comptes utilisateurs (suspendre / réactiver)
-    - Journal des accès refusés : trace chaque tentative d'accès à une page admin par un compte non autorisé (IP, route visée, utilisateur si connu)
-    - Export SQL complet de la base en un clic (sauvegarde manuelle, utile sur un hébergement mutualisé sans accès `cron`/shell)
-    - Nettoyage des fichiers photo orphelins (uploads interrompus, non rattachés à une annonce)
+    d) Administrateur : 
+        - Modération des annonces (approuver / rejeter, avec notification automatique au propriétaire et déclenchement des alertes de recherche correspondantes)
+        - Gestion des signalements (traiter / rejeter)
+        - Gestion des comptes utilisateurs (suspendre / réactiver)
+        - Journal des accès refusés : trace chaque tentative d'accès à une page admin par un compte non autorisé (IP, route visée, utilisateur si connu)
+        - Export SQL complet de la base en un clic (sauvegarde manuelle, utile sur un hébergement mutualisé sans accès `cron`/shell)
+        - Nettoyage des fichiers photo orphelins (uploads interrompus, non rattachés à une annonce)
 
 3. Stack technique
 
-    Langage serveur : PHP 8 (natif, POO, sans framework) car Contrôle total, hébergement mutualisé compatible 
-    Base de données : MySQL / MariaDB via PDO (requêtes préparées partout) car Standard, disponible sur tout hébergement 
-    Frontend : Bootstrap 5.3 + CSS custom (design system maison) car Rapide à mettre en œuvre, personnalisable 
-    Cartes : Leaflet.js + OpenStreetMap car Gratuit, sans clé API (contrairement à Google Maps) 
-    JavaScript : Vanilla JS (aucune librairie de framework) car Pas de build step, simplicité de déploiement 
-    Emails : "mail()" PHP natif (simulation en fichier local en développement) car Compatible hébergement mutualisé gratuit 
-    Hébergement : Laragon (local) puis InfinityFree (production) car Gratuit, accessible sans budget serveur 
+        Langage serveur : PHP 8 (natif, POO, sans framework) car Contrôle total, hébergement mutualisé compatible 
+        Base de données : MySQL / MariaDB via PDO (requêtes préparées partout) car Standard, disponible sur tout hébergement 
+        Frontend : Bootstrap 5.3 + CSS custom (design system maison) car Rapide à mettre en œuvre, personnalisable 
+        Cartes : Leaflet.js + OpenStreetMap car Gratuit, sans clé API (contrairement à Google Maps) 
+        JavaScript : Vanilla JS (aucune librairie de framework) car Pas de build step, simplicité de déploiement 
+        Emails : "mail()" PHP natif (simulation en fichier local en développement) car Compatible hébergement mutualisé gratuit 
+        Hébergement : Laragon (local) puis InfinityFree (production) car Gratuit, accessible sans budget serveur 
 
 
 4. Architecture du projet
@@ -151,32 +151,33 @@ La fonction `url()`
 
 Liste des protections mises en place, par catégorie :
 
-Authentification
-    - Mots de passe hachés avec `password_hash()` (bcrypt)
-    - Verrouillage de compte après 5 échecs de connexion (15 minutes)
-    - Blocage anti-brute-force par adresse IP en complément (20 tentatives, 15 minutes) - protège contre un attaquant qui viserait plusieurs comptes différents sans jamais déclencher le verrou individuel
-    - Régénération de l'identifiant de session à la connexion (anti fixation de session)
-    - Réinitialisation de mot de passe par token à usage unique, expirant après 1 heure
-    - Messages d'erreur volontairement génériques ("email ou mot de passe incorrect") pour empêcher l'énumération de comptes existants
+    Authentification
+        - Mots de passe hachés avec `password_hash()` (bcrypt)
+        - Verrouillage de compte après 5 échecs de connexion (15 minutes)
+        - Blocage anti-brute-force par adresse IP en complément (20 tentatives, 15 minutes) 
+        - protège contre un attaquant qui viserait plusieurs comptes différents sans jamais déclencher le verrou individuel
+        - Régénération de l'identifiant de session à la connexion (anti fixation de session)
+        - Réinitialisation de mot de passe par token à usage unique, expirant après 1 heure
+        - Messages d'erreur volontairement génériques ("email ou mot de passe incorrect") pour empêcher l'énumération de comptes existants
 
-Autorisation
-    - Vérification systématique de la propriété d'une ressource avant modification/suppression (impossible de modifier l'annonce, le profil ou la conversation de quelqu'un d'autre en changeant un ID dans l'URL)
-    - Journal des tentatives d'accès admin refusées, consultable par les administrateurs
+    Autorisation
+        - Vérification systématique de la propriété d'une ressource avant modification/suppression (impossible de modifier l'annonce, le profil ou la conversation de quelqu'un d'autre en changeant un ID dans l'URL)
+        - Journal des tentatives d'accès admin refusées, consultable par les administrateurs
 
-Contenu
-    - Protection CSRF sur tous les formulaires (token à usage par session, vérifié avec `hash_equals()`)
-    - Échappement systématique en sortie (`htmlspecialchars`) pour prévenir les failles XSS
-    - Vérification du type MIME réel des fichiers uploadés (pas seulement l'extension déclarée), noms de fichiers régénérés aléatoirement
-    - Toute modification d'une annonce (texte ou photos) la repasse automatiquement en modération, empêche un propriétaire de faire approuver une annonce propre puis d'en changer le contenu sans contrôle
+    Contenu
+        - Protection CSRF sur tous les formulaires (token à usage par session, vérifié avec `hash_equals()`)
+        - Échappement systématique en sortie (`htmlspecialchars`) pour prévenir les failles XSS
+        - Vérification du type MIME réel des fichiers uploadés (pas seulement l'extension déclarée), noms de fichiers régénérés aléatoirement
+        - Toute modification d'une annonce (texte ou photos) la repasse automatiquement en modération, empêche un propriétaire de faire approuver une annonce propre puis d'en changer le contenu sans contrôle
 
-Infrastructure
-    - En-têtes HTTP de sécurité (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`)
-    - Cookies de session `httponly` + `samesite=Lax` (+ `secure` en production)
-    - Requêtes SQL exclusivement préparées (PDO), aucune concaténation de valeurs utilisateur
+    Infrastructure
+        - En-têtes HTTP de sécurité (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`)
+        - Cookies de session `httponly` + `samesite=Lax` (+ `secure` en production)
+        - Requêtes SQL exclusivement préparées (PDO), aucune concaténation de valeurs utilisateur
 
-Confidentialité (RGPD-friendly)
-    - Suppression de compte = anonymisation (pas de suppression brutale) : les données personnelles sont effacées, mais les messages/avis échangés avec d'autres utilisateurs restent visibles pour eux (affichant "Compte supprimé"), pour ne pas casser leur historique
-    - Les annonces d'un compte supprimé sont réellement supprimées, avec leurs photos
+    Confidentialité (RGPD-friendly)
+        - Suppression de compte = anonymisation (pas de suppression brutale) : les données personnelles sont effacées, mais les messages/avis échangés avec d'autres utilisateurs restent visibles pour eux (affichant "Compte supprimé"), pour ne pas casser leur historique
+        - Les annonces d'un compte supprimé sont réellement supprimées, avec leurs photos
 
 
 6. Design system
