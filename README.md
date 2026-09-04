@@ -28,7 +28,7 @@ Sommaire
 L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
     a) Visiteur (non connecté) : 
-         - Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
+- Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
     - Consultation d'une fiche bien complète (photos, équipements, localisation, avis)
     - Consultation du profil public d'un propriétaire (annonces, note moyenne, temps de réponse moyen)
     - Inscription / connexion
