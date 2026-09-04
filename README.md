@@ -2,7 +2,7 @@ TTM - Trouve Ton Milieu
 
 Plateforme immobilière camerounaise permettant à des propriétaires de publier des annonces (location ou vente) et à des locataires/acheteurs de rechercher, contacter et visiter des biens, le tout avec modération, messagerie intégrée, avis, favoris, alertes et un espace d'administration complet.
 
- Sommaire
+Sommaire
 
    _Présentation
    _Rôles et fonctionnalités 
