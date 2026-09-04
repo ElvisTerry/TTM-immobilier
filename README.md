@@ -4,17 +4,17 @@ Plateforme immobilière camerounaise permettant à des propriétaires de publier
 
 Sommaire
 
-   _Présentation
-   _Rôles et fonctionnalités 
-   _Stack technique
-   _Architecture du projet
-   _Sécurité
-   _Design system
-   _Installation en local (Laragon)
-   _Déploiement en production 
-   _Base de données
-   _Limites connues
-   _Auteur
+   1_Présentation
+   2_Rôles et fonctionnalités 
+   3_Stack technique
+   4_Architecture du projet
+   5_Sécurité
+   6_Design system
+   7_Installation en local (Laragon)
+   8_Déploiement en production 
+   9_Base de données
+   10_Limites connues
+   11_Auteur
 
 
 1. Présentation
@@ -79,7 +79,7 @@ d) Administrateur :
 
 Le projet suit un pattern MVC fait maison, avec un routeur minimaliste basé sur des expressions régulières.
 
-
+```
 htdocs/
 ├── config/
 │   ├── environnement.php      # ENVIRONNEMENT = 'developpement' | 'production'
@@ -133,7 +133,7 @@ htdocs/
 │   └── emails-simules/         # Emails "envoyés" en développement (fichiers .txt)
 └── index.php                # Point d'entrée UNIQUE de l'application
 └── css/design-system.css
-
+```
 Le routeur
 
     Toutes les requêtes passent par `public/index.php`, qui déclare les routes puis délègue à `Router::dispatch()` :
@@ -144,7 +144,7 @@ Le routeur
 
 La fonction `url()`
 
-Jamais d'URL écrite en dur dans les vues. La fonction `url('biens/detail', [12])` détecte automatiquement si le site est servi depuis la racine ou un sous-dossier, et construit l'URL correspondante. `urlAbsolue()` fait la même chose avec le domaine complet (nécessaire dans les emails).
+    Jamais d'URL écrite en dur dans les vues. La fonction `url('biens/detail', [12])` détecte automatiquement si le site est servi depuis la racine ou un sous-dossier, et construit l'URL correspondante. `urlAbsolue()` fait la même chose avec le domaine complet (nécessaire dans les emails).
 
 
  5. Sécurité
