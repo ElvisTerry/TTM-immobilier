@@ -18,11 +18,11 @@ Sommaire
 
 1. Présentation
 
-       TTM (Trouve Ton Milieu) est une application web PHP "maison" (sans framework externe type Laravel/Symfony) construite pour répondre à un besoin concret : permettre à n'importe qui au Cameroun de publier ou trouver un logement (chambre, studio, appartement, maison) à louer ou à vendre, avec un système de confiance intégré (modération des annonces, avis, signalements) et une expérience mobile-first.
-       Le projet a été développé de façon incrémentale, "jour par jour", chaque fonctionnalité s'appuyant sur les précédentes sans jamais casser l'existant.
+ TTM (Trouve Ton Milieu) est une application web PHP "maison" (sans framework externe type Laravel/Symfony) construite pour répondre à un besoin concret : permettre à n'importe qui au Cameroun de publier ou trouver un logement (chambre, studio, appartement, maison) à louer ou à vendre, avec un système de confiance intégré (modération des annonces, avis, signalements) et une expérience mobile-first.
+  Le projet a été développé de façon incrémentale, "jour par jour", chaque fonctionnalité s'appuyant sur les précédentes sans jamais casser l'existant.
 
 
-2. Rôles et fonctionnalités
+3. Rôles et fonctionnalités
 
 L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
