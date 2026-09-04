@@ -27,13 +27,13 @@ Sommaire
 
     L'application distingue 3 rôles : locataire, proprietaire et administrateur.
 
-a) Visiteur (non connecté)
+a) Visiteur (non connecté) : 
     - Recherche de biens avec filtres (ville, quartier, type de bien, type de transaction, budget, rayon géographique autour d'un point sur la carte)
     - Consultation d'une fiche bien complète (photos, équipements, localisation, avis)
     - Consultation du profil public d'un propriétaire (annonces, note moyenne, temps de réponse moyen)
     - Inscription / connexion
 
-b) Locataire
+b) Locataire :
     Tout ce qui précède, plus :
     - Contact du propriétaire par messagerie intégrée (avec accusé de lecture, mise à jour en temps quasi-réel par sondage)
     - Réservation d'une visite sur un créneau disponible
@@ -44,7 +44,7 @@ b) Locataire
     - Signalement d'une annonce suspecte (motif + description)
     - Suppression définitive de son compte (voir [Sécurité](#-sécurité))
 
-c) Propriétaire
+c) Propriétaire :
     Tout ce qui précède (sauf réserver une visite sur son propre bien), plus :
     - Assistant de publication en 5 étapes (infos - équipements - localisation - photos - récapitulatif), avec sauvegarde de session à chaque étape pour ne rien perdre en cas d'abandon
     - Upload de photos par glisser-déposer, réordonnancement, compression automatique
@@ -56,7 +56,7 @@ c) Propriétaire
     - Tableau de bord avec statistiques (vues, biens actifs, taux d'approbation...)
     - Badge "temps de réponse moyen" affiché automatiquement sur son profil public dès qu'il a un historique de conversation suffisant
 
-d) Administrateur
+d) Administrateur : 
     - Modération des annonces (approuver / rejeter, avec notification automatique au propriétaire et déclenchement des alertes de recherche correspondantes)
     - Gestion des signalements (traiter / rejeter)
     - Gestion des comptes utilisateurs (suspendre / réactiver)
