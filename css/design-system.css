@@ -1,0 +1,405 @@
+/* public/css/design-system.css
+   -------------------------------
+   Design system ImmoApp v2. On surcharge les variables CSS de Bootstrap
+   5.3 (--bs-*) plutôt que de combattre ses styles par-dessus : c'est
+   plus propre et ça évite les guerres de spécificité CSS. */
+
+:root {
+    /* --- Palette --- */
+    --couleur-primaire: #0B5D3B;        /* vert forêt profond : confiance, "chez soi" */
+    --couleur-primaire-claire: #147852;
+    --couleur-accent: #C1440E;          /* rouille / latérite : accent d'action */
+    --couleur-or: #E3A72E;              /* or savane : accents secondaires, badges */
+    --couleur-fond: #FAF8F3;            /* blanc chaud */
+    --couleur-texte: #1F2421;
+    --couleur-texte-doux: #5B6660;
+
+    /* Surcharge Bootstrap */
+    --bs-primary: var(--couleur-primaire);
+    --bs-primary-rgb: 11, 93, 59;
+    --bs-body-bg: var(--couleur-fond);
+    --bs-body-color: var(--couleur-texte);
+    --bs-link-color: var(--couleur-primaire);
+    --bs-link-hover-color: var(--couleur-primaire-claire);
+
+    --police-affichage: 'Fraunces', Georgia, serif;
+    --police-corps: 'Work Sans', -apple-system, sans-serif;
+}
+
+/* --- Mode sombre (Jour 22) --- : mêmes variables, valeurs adaptées.
+   Activé en posant data-theme="sombre" sur <html> (voir footer.php pour
+   le script de bascule + persistance). Les couleurs de MARQUE (primaire,
+   accent, or) restent identiques — seuls les fonds et textes s'inversent —
+   pour que le site reste reconnaissable dans les deux thèmes. */
+[data-theme="sombre"] {
+    --couleur-fond: #14201A;
+    --couleur-texte: #EDEDE8;
+    --couleur-texte-doux: #A9B0AC;
+    --couleur-primaire-claire: #1D9463;
+
+    --bs-body-bg: var(--couleur-fond);
+    --bs-body-color: var(--couleur-texte);
+}
+[data-theme="sombre"] .bg-white,
+[data-theme="sombre"] .navbar,
+[data-theme="sombre"] .card,
+[data-theme="sombre"] .dropdown-menu,
+[data-theme="sombre"] .modal-content {
+    background-color: #1B2A22 !important;
+    color: var(--couleur-texte);
+}
+[data-theme="sombre"] .form-control,
+[data-theme="sombre"] .form-select {
+    background-color: #1B2A22;
+    color: var(--couleur-texte);
+    border-color: rgba(255,255,255,0.15);
+}
+[data-theme="sombre"] .border,
+[data-theme="sombre"] .border-bottom,
+[data-theme="sombre"] .carte-bien {
+    border-color: rgba(255,255,255,0.12) !important;
+}
+[data-theme="sombre"] .bg-light {
+    background-color: #22332A !important;
+}
+[data-theme="sombre"] .text-dark {
+    color: var(--couleur-texte) !important;
+}
+
+body {
+    font-family: var(--police-corps);
+}
+
+h1, h2, h3, .logo-marque {
+    font-family: var(--police-affichage);
+    font-weight: 600;
+}
+
+/* --- Boutons : on remplace le bleu Bootstrap par défaut --- */
+.btn-primary {
+    background-color: var(--couleur-primaire);
+    border-color: var(--couleur-primaire);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--couleur-primaire-claire);
+    border-color: var(--couleur-primaire-claire);
+}
+.btn-accent {
+    background-color: var(--couleur-accent);
+    border-color: var(--couleur-accent);
+    color: #fff;
+}
+.btn-accent:hover {
+    background-color: #a3390b;
+    color: #fff;
+}
+
+/* --- Navbar --- */
+.navbar-brand.logo-marque {
+    font-size: 1.5rem;
+    color: var(--couleur-primaire) !important;
+}
+
+/* --- Indicateur de page active (Jour 20) : un trait qui glisse sous le
+   lien du module courant, et s'esquisse aussi au survol des autres liens
+   pour un menu qui réagit partout, pas seulement sur la page active. --- */
+.navbar-nav .nav-link {
+    position: relative;
+    color: var(--couleur-texte);
+}
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: -2px;
+    height: 2px;
+    background-color: var(--couleur-accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+}
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(0.6);
+}
+.navbar-nav .nav-link.nav-link-actif {
+    color: var(--couleur-primaire);
+    font-weight: 600;
+}
+.navbar-nav .nav-link.nav-link-actif::after {
+    transform: scaleX(1);
+    background-color: var(--couleur-primaire);
+}
+
+/* --- Apparition douce des cartes (Jour 17) --- */
+.carte-bien {
+    animation: apparitionCarte 0.35s ease both;
+}
+@keyframes apparitionCarte {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* --- Squelettes de chargement (Jour 17) : affichés pendant qu'une
+   recherche AJAX est en cours, à la place d'un simple texte "Chargement..."
+   qui ne donne aucune idée de la forme du contenu à venir. --- */
+.squelette-carte {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+.squelette-bloc {
+    background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+    background-size: 200% 100%;
+    animation: chargementSquelette 1.4s ease-in-out infinite;
+}
+@keyframes chargementSquelette {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==================== Page d'accueil (refonte — style Airbnb) ==================== */
+
+/* --- Hero : épuré, clair, avec un halo de couleur doux façon aquarelle
+   en arrière-plan (plusieurs dégradés radiaux flous) plutôt qu'un bandeau
+   plein — plus premium, plus "respirant" qu'un aplat de couleur dense.
+   Aucune photo requise : cohérent avec notre absence de banque d'images. --- */
+.hero-accueil {
+    position: relative;
+    text-align: center;
+    padding: 3.5rem 1rem 3rem;
+    overflow: hidden;
+}
+.hero-accueil::before {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 500px 320px at 15% 20%, rgba(11,93,59,0.16), transparent 70%),
+        radial-gradient(ellipse 420px 300px at 88% 15%, rgba(227,167,46,0.20), transparent 70%),
+        radial-gradient(ellipse 480px 340px at 50% 95%, rgba(193,68,14,0.10), transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+}
+.hero-accueil .contenu-hero {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--couleur-accent);
+    margin-bottom: 0.75rem;
+}
+.hero-titre {
+    font-family: var(--police-affichage);
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08;
+    color: var(--couleur-texte);
+}
+.hero-soustitre {
+    color: var(--couleur-texte-doux);
+    font-size: 1.1rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Rail de catégories : élément SIGNATURE de la page. Bulles rondes,
+   défilement horizontal tactile, indicateur qui glisse au survol —
+   écho volontaire du soulignement actif du menu, pour un langage visuel
+   cohérent sur tout le site (sélection = trait qui apparaît). --- */
+.rail-categories {
+    display: flex;
+    gap: 1.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem 1rem;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+}
+.rail-categories::-webkit-scrollbar { display: none; }
+.item-categorie {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--couleur-texte-doux);
+    width: 92px;
+    text-align: center;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+.item-categorie:hover,
+.item-categorie:focus-visible {
+    color: var(--couleur-texte);
+    border-color: var(--couleur-primaire);
+}
+.bulle-categorie {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.item-categorie:hover .bulle-categorie {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(11,93,59,0.15);
+}
+.item-categorie span.libelle {
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+/* --- Barre de confiance --- */
+.barre-confiance .chiffre {
+    font-family: var(--police-affichage);
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--couleur-primaire);
+}
+
+/* --- "Comment ça marche" : vraie séquence temporelle (rechercher →
+   visiter → emménager), donc la numérotation encode une information
+   réelle plutôt que de décorer. --- */
+.etape-processus {
+    text-align: center;
+    padding: 1.5rem 1rem;
+}
+.etape-numero {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: var(--police-affichage);
+    font-weight: 600;
+    color: #fff;
+    background: var(--couleur-primaire);
+}
+.etape-processus:nth-child(2) .etape-numero { background: var(--couleur-accent); }
+.etape-processus:nth-child(3) .etape-numero { background: var(--couleur-or); color: var(--couleur-texte); }
+
+/* --- Cartes d'annonces : léger zoom de l'image au survol, en plus de
+   l'ascension déjà en place sur .carte-bien --- */
+.carte-bien img {
+    transition: transform 0.35s ease;
+}
+.carte-bien:hover img {
+    transform: scale(1.04);
+}
+.carte-bien .card-body { padding: 1.1rem; }
+
+/* --- Bandeau CTA propriétaires --- */
+.bandeau-cta {
+    background: linear-gradient(135deg, #FAF8F3, #f3ead9);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(227,167,46,0.3);
+}
+
+/* ==================== fin page d'accueil ==================== */
+
+/* --- Signature : barre d'accent rouille au survol des cartes d'annonce --- */
+.carte-bien {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.2s ease, transform 0.15s ease;
+}
+.carte-bien:hover {
+    border-left-color: var(--couleur-accent);
+    transform: translateY(-3px);
+}
+
+/* --- Vignettes photo de l'assistant de création (Jour 6) --- */
+.photo-vignette {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: grab;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+.photo-vignette img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* évite que l'image capte le drag à la place du conteneur */
+}
+.photo-vignette .bouton-suppression-photo {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    line-height: 1;
+    font-size: 1rem;
+}
+.photo-vignette:active {
+    cursor: grabbing;
+}
+
+/* --- Sélecteur d'étoiles (Jour 11) : CSS pur, aucun JS nécessaire.
+   Les boutons radio sont dans l'ordre 5,4,3,2,1 dans le HTML, puis
+   réaffichés à l'envers visuellement (row-reverse) — c'est ce qui permet
+   à ":hover ~ label" de surligner correctement les étoiles précédentes. */
+#selecteurEtoiles {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font-size: 1.5rem;
+}
+.etoile-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.etoile-label {
+    color: #ddd;
+    cursor: pointer;
+    padding: 0 2px;
+}
+.etoile-input:checked ~ .etoile-label,
+#selecteurEtoiles:hover .etoile-label:hover,
+#selecteurEtoiles:hover .etoile-label:hover ~ .etoile-label {
+    color: var(--couleur-or);
+}
+
+/* --- Accessibilité : focus clavier toujours visible --- */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+    outline: 3px solid var(--couleur-or);
+    outline-offset: 2px;
+}
+
+/* --- Respect de la préférence "réduire les animations" --- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
